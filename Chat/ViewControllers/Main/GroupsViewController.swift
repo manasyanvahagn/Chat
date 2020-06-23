@@ -39,6 +39,7 @@ class GroupsViewController: UIViewController {
         groupTableView.delegate = self
         fetchGroups()
         navigationItem.backBarButtonItem?.tintColor = .red
+        groupTableView.backgroundColor = #colorLiteral(red: 0.1960602105, green: 0.1960886121, blue: 0.1960505545, alpha: 1)
     }
     
     /// This function add to app group adding alert

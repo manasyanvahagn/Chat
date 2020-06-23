@@ -13,7 +13,6 @@ import FirebaseAuth
 class MessagesViewController: UIViewController {
     @IBOutlet weak var messagesTableView: UITableView!
     @IBOutlet weak var sendMessageTextField: UITextField!
-    @IBOutlet weak var groupNavigationBarName: UINavigationItem!
     let timeStampHelper = TimeStampHelper()
     var ref: DatabaseReference!
     var auth: Auth!
@@ -27,15 +26,17 @@ class MessagesViewController: UIViewController {
     
     @IBAction func send(_ sender: Any) {
         sendMessage()
+        sendMessageTextField.text = ""
     }
     
     func setup() {
-        groupNavigationBarName.title = groupName
+        navigationItem.title = groupName
         fetchMessages()
         messagesTableView.dataSource = self
         messagesTableView.delegate = self
+        messagesTableView.backgroundColor = #colorLiteral(red: 0.1960602105, green: 0.1960886121, blue: 0.1960505545, alpha: 1)
+        messagesTableView.allowsSelection = false
     }
-    
     
     func sendMessage() {
         ref = Database.database().reference().child("groups")
@@ -71,6 +72,7 @@ class MessagesViewController: UIViewController {
                 return msg1 < msg2
             }
             self.messagesTableView.reloadData()
+            self.messagesTableView.scrollToRow(at: IndexPath(item: self.messages.count - 1, section: 0), at: .bottom, animated: true)
         }
     }
     
@@ -82,11 +84,16 @@ extension MessagesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let messageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MessagesTableViewCell", for: indexPath) as? MessagesTableViewCell else {return UITableViewCell()}
+        guard let messageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MessagesTableViewCell", for: indexPath) as?
+            MessagesTableViewCell else {return UITableViewCell()}
         messageTableViewCell.messageLabel.text = messages[indexPath.row].messageText
         return messageTableViewCell
     }
     
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+    }
     
 }
 
