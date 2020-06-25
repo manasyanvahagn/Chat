@@ -31,18 +31,15 @@ class GroupsViewController: UIViewController {
         showAlert()
     }
     
-    
     // MARK: -Methods-
     
     func setup() {
         groupTableView.dataSource = self
         groupTableView.delegate = self
         fetchGroups()
-        navigationItem.backBarButtonItem?.tintColor = .red
         groupTableView.backgroundColor = #colorLiteral(red: 0.1960602105, green: 0.1960886121, blue: 0.1960505545, alpha: 1)
     }
     
-    /// This function add to app group adding alert
     func showAlert() {
         let alert = UIAlertController(title: "Add New Group", message: nil, preferredStyle: .alert)
         alert.addTextField { (alertTextField) in
@@ -82,7 +79,6 @@ class GroupsViewController: UIViewController {
         destination.groupName = (sender as? GroupTableViewCell)?.groupNameLabel.text
     }
 }
-
 
 extension GroupsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

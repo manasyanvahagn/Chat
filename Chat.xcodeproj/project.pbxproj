@@ -10,7 +10,7 @@
 		2332001E2476A17E00597AB8 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332001D2476A17E00597AB8 /* Group.swift */; };
 		23484C0A244B161200D0727E /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23484C09244B161200D0727E /* FirebaseHelper.swift */; };
 		234C99932449AE340034A7B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234C99922449AE340034A7B5 /* User.swift */; };
-		2352345F24869725006250B5 /* MessagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2352345E24869725006250B5 /* MessagesTableViewCell.swift */; };
+		2352345F24869725006250B5 /* CurrentUserMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2352345E24869725006250B5 /* CurrentUserMessageTableViewCell.swift */; };
 		235234642487B4C6006250B5 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235234632487B4C6006250B5 /* MessagesViewController.swift */; };
 		235372C32472B0E400FDE568 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235372C22472B0E400FDE568 /* GroupTableViewCell.swift */; };
 		23561D1E2445E7EA00505E78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23561D1D2445E7EA00505E78 /* AppDelegate.swift */; };
@@ -26,6 +26,7 @@
 		23C5BE922446017B0065AF54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23C5BE912446017B0065AF54 /* Main.storyboard */; };
 		23D0D98724941C720083D30F /* TimeStampHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D0D98624941C720083D30F /* TimeStampHelper.swift */; };
 		23E4F14E24545FF800B6DFE2 /* ValidationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E4F14D24545FF800B6DFE2 /* ValidationHelper.swift */; };
+		23F889DD24A20EDB004D679D /* OtherUsersMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F889DC24A20EDB004D679D /* OtherUsersMessageTableViewCell.swift */; };
 		41EA011137FF8B05E0CC63FC /* Pods_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA273E2323549A91D8DBAD8 /* Pods_Chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +34,7 @@
 		2332001D2476A17E00597AB8 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		23484C09244B161200D0727E /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		234C99922449AE340034A7B5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		2352345E24869725006250B5 /* MessagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTableViewCell.swift; sourceTree = "<group>"; };
+		2352345E24869725006250B5 /* CurrentUserMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserMessageTableViewCell.swift; sourceTree = "<group>"; };
 		235234632487B4C6006250B5 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		235372C22472B0E400FDE568 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		23561D1A2445E7EA00505E78 /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +52,7 @@
 		23C5BE912446017B0065AF54 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		23D0D98624941C720083D30F /* TimeStampHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStampHelper.swift; sourceTree = "<group>"; };
 		23E4F14D24545FF800B6DFE2 /* ValidationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationHelper.swift; sourceTree = "<group>"; };
+		23F889DC24A20EDB004D679D /* OtherUsersMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersMessageTableViewCell.swift; sourceTree = "<group>"; };
 		309C66B8265576F93FE560EC /* Pods-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat.debug.xcconfig"; path = "Target Support Files/Pods-Chat/Pods-Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		CAA273E2323549A91D8DBAD8 /* Pods_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC5CC91A78D3A4E2C1496EE2 /* Pods-Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat.release.xcconfig"; path = "Target Support Files/Pods-Chat/Pods-Chat.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,7 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				235372C22472B0E400FDE568 /* GroupTableViewCell.swift */,
-				2352345E24869725006250B5 /* MessagesTableViewCell.swift */,
+				2352345E24869725006250B5 /* CurrentUserMessageTableViewCell.swift */,
+				23F889DC24A20EDB004D679D /* OtherUsersMessageTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -311,8 +314,9 @@
 				235234642487B4C6006250B5 /* MessagesViewController.swift in Sources */,
 				23D0D98724941C720083D30F /* TimeStampHelper.swift in Sources */,
 				2382BD01246C0EF800820E4D /* FirstViewController.swift in Sources */,
-				2352345F24869725006250B5 /* MessagesTableViewCell.swift in Sources */,
+				2352345F24869725006250B5 /* CurrentUserMessageTableViewCell.swift in Sources */,
 				23C5BE8F244600090065AF54 /* LoginViewController.swift in Sources */,
+				23F889DD24A20EDB004D679D /* OtherUsersMessageTableViewCell.swift in Sources */,
 				2382BCFF246C0A7300820E4D /* Message.swift in Sources */,
 				235372C32472B0E400FDE568 /* GroupTableViewCell.swift in Sources */,
 				23561D202445E7EA00505E78 /* SceneDelegate.swift in Sources */,

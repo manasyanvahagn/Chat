@@ -14,10 +14,12 @@ class MessagesViewController: UIViewController {
     @IBOutlet weak var messagesTableView: UITableView!
     @IBOutlet weak var sendMessageTextField: UITextField!
     let timeStampHelper = TimeStampHelper()
+    let firebaseHelper = FirebaseHelper()
     var ref: DatabaseReference!
     var auth: Auth!
     var groupName: String?
     var messages: [Message] = []
+    var userData: [User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +27,10 @@ class MessagesViewController: UIViewController {
     }
     
     @IBAction func send(_ sender: Any) {
-        sendMessage()
-        sendMessageTextField.text = ""
+        if sendMessageTextField.text != "" {
+            sendMessage()
+            sendMessageTextField.text = ""
+        }
     }
     
     func setup() {
@@ -36,6 +40,8 @@ class MessagesViewController: UIViewController {
         messagesTableView.delegate = self
         messagesTableView.backgroundColor = #colorLiteral(red: 0.1960602105, green: 0.1960886121, blue: 0.1960505545, alpha: 1)
         messagesTableView.allowsSelection = false
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     func sendMessage() {
@@ -72,8 +78,12 @@ class MessagesViewController: UIViewController {
                 return msg1 < msg2
             }
             self.messagesTableView.reloadData()
-            self.messagesTableView.scrollToRow(at: IndexPath(item: self.messages.count - 1, section: 0), at: .bottom, animated: true)
+            self.messagesTableView.scrollToRow(at: IndexPath(item: self.messages.count - 1, section: 0), at: .bottom, animated: false)
         }
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 }
@@ -84,17 +94,31 @@ extension MessagesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let messageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MessagesTableViewCell", for: indexPath) as?
-            MessagesTableViewCell else {return UITableViewCell()}
-        messageTableViewCell.messageLabel.text = messages[indexPath.row].messageText
-        return messageTableViewCell
-    }
-    
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let userID = Auth.auth().currentUser?.uid else {return UITableViewCell()}
+        if userID == messages[indexPath.row].senderID {
+            guard let messageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CurrentUserMessageTableViewCell", for: indexPath) as?
+                CurrentUserMessageTableViewCell else {return UITableViewCell()}
+            messageTableViewCell.messageLabel.text = messages[indexPath.row].messageText
+            messageTableViewCell.timeStampLabel.text = messages[indexPath.row].timeStampString
+            return messageTableViewCell
+        } else {
+            guard let messageTableViewCell = tableView.dequeueReusableCell(withIdentifier: "OtherUsersMessageTableViewCell", for: indexPath) as?
+                OtherUsersMessageTableViewCell else {return UITableViewCell()}
+            messageTableViewCell.messageTextLabel.text = messages[indexPath.row].messageText
+            messageTableViewCell.timeStampLabel.text = messages[indexPath.row].timeStampString
+            return messageTableViewCell
+        }
         
     }
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let verticalPadding: CGFloat = 8
+        
+        let maskLayer = CALayer()
+        maskLayer.cornerRadius = 10    //if you want round edges
+        maskLayer.backgroundColor = UIColor.black.cgColor
+        maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: verticalPadding/2)
+        cell.layer.mask = maskLayer
+    }
 }
 
 extension MessagesViewController: UITableViewDelegate {

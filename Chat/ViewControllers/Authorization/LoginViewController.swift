@@ -46,8 +46,6 @@ class LoginViewController: UIViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let groupsViewController = storyBoard.instantiateViewController(withIdentifier: "GroupsViewController") as! GroupsViewController
         self.navigationController?.pushViewController(groupsViewController, animated: true)
-//        groupsViewController.modalPresentationStyle = .fullScreen
-//        self.present(groupsViewController, animated:true, completion:nil)
     }
     
     
